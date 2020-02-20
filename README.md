@@ -1,2 +1,2 @@
 # OOP-learning-notes
-Object Oriented Programming-oop
+Object Oriented Programming-OOP
