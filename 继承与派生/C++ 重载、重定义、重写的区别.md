@@ -182,3 +182,71 @@ int main()
       return 0;
 }
 ```
+## 示例程序
+```cpp
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+
+using namespace std;
+
+class Base 
+{
+	private:
+	virtual void display() {cout << "Base display()" << endl;}
+	void say() {cout << "Base say()" << endl;}
+	
+	public:
+	void exec(){ display(); say(); }
+	void f1(string a) { cout<<"Base f1(string)"<<endl; }
+	void f1(int a) { cout<<"Base f1(int)"<<endl; } //overload，两个f1函数在Base类的内部被重载
+	void f2(char a) { cout<<"Base f2(char)"<<endl; }
+};
+
+class DeriveA: public Base 
+{
+	public:
+	void display() { cout<<"DeriveA display()"<<endl; } //override，基类中display为虚函数，故此处为重写
+	void f1(int a,int b) { cout<<"DeriveA f1(int,int)"<<endl; } //redefining，f1函数在Base类中不为虚函数，故此处为重定义
+	void say() { cout<<"DeriveA say()"<<endl; } //redefining，同上
+};
+
+class DeriveB: public Base
+{
+	public:
+	void f1(int a) { cout<<"DeriveB f1(int)"<<endl; } //redefining，重定义
+	void f2(int a) { cout<<"Base f2(int)"<<endl; }
+};
+
+
+
+int main(void){
+	DeriveA a;
+	Base *b=&a;
+	b->exec(); //display():version of DeriveA call(polymorphism) //say():version of Base called(allways )
+	cout << "***" << endl;
+	a.exec(); //same result as last statement   
+	cout << "***" << endl;
+	a.say();
+	cout << "***" << endl;
+	DeriveB c;
+	c.f1(1); //version of DeriveB called
+	cout << "***" << endl;
+	c.f2(6);
+	return 0;
+}
+```
+
+运行结果
+
+>DeriveA display()
+Base say()
+*******
+DeriveA display()
+Base say()
+*******
+DeriveA say()
+*******
+DeriveB f1(int)
+*******
+Base f2(int)
