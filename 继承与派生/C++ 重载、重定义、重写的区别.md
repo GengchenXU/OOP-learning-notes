@@ -203,6 +203,7 @@ int main()
 }
 ```
 ## 示例程序
+### Ⅰ
 ```cpp
 #include <iostream>
 #include <stdlib.h>
@@ -259,14 +260,96 @@ int main(void){
 
 运行结果
 
->DeriveA display()
-Base say()
-*******
-DeriveA display()
-Base say()
-*******
-DeriveA say()
-*******
-DeriveB f1(int)
-*******
+>DeriveA display()  
+Base say()  
+`*******`  
+DeriveA display()  
+Base say()  
+`*******`  
+DeriveA say()  
+`*******`   
+DeriveB f1(int)  
+`*******`  
 Base f2(int)
+
+### Ⅱ
+```cpp
+#include<iostream>
+ 
+using namespace std;
+ 
+class Animal
+{
+public:
+	void func1(int tmp)
+	{
+		cout << "I'm an animal -" << tmp << endl;
+	}
+	void func1(const char *s)//函数的重载
+	{
+		cout << "I'm an animal func1 -" << s << endl;
+	}
+	virtual void func2(int tmp)
+	{
+		cout << "I'm virtual animal func2 -" << tmp << endl;
+	}
+	void func3(int tmp)
+	{
+		cout << "I'm an animal func3 -" << tmp << endl;
+	}
+};
+ 
+class Fish :public Animal
+{
+public:
+	void func1()//函数的重定义 会隐藏父类同名方法
+	{
+		cout << "I'm a fish func1" << endl;
+	}
+	void func2(int tmp) //函数的重写， 覆盖父类的方法 override
+	{
+		cout << "I'm a fish func2 -" << tmp << endl;
+	}
+ 
+	void func3(int tmp) { //函数的重定义 会隐藏父类同名方法
+		cout << "I'm a fish func3 -" << tmp << endl;
+	}
+};
+ 
+int main()
+{
+	Fish fi;
+	Animal an;
+ 
+	fi.func1();
+	fi.Animal::func1(1);	// 由于是重定义 父类的方法已经被隐藏
+	dynamic_cast<Animal *>(&fi)->func1(11); // 强转之后即可调用到父类被隐藏的方法
+	dynamic_cast<Animal *>(&fi)->func1("hello world"); // 强转之后即可调用到父类被隐藏的方法
+	fi.func2(2);	// 调用子类
+	dynamic_cast<Animal *>(&fi)->func2(22); // 调用"子类方法"(因为是虚函数，会被子类覆盖)
+	dynamic_cast<Animal *>(&fi)->func3(222); // 调用父类
+	fi.Animal::func2(2222);
+	fi.Animal::func3(22222);
+	fi.func3(2222);	// 调用子类
+ 
+	cout << endl << " ************ " << endl;
+	an.func1(1);
+	an.func1("I'm an animal");
+	an.func2(1);
+	return 0;
+}
+```
+> I'm a fish func1  
+I'm an animal -1  
+I'm an animal -11  
+I'm an animal func1 -hello world  
+I'm a fish func2 -2  
+I'm a fish func2 -22  
+I'm an animal func3 -222  
+I'm virtual animal func2 -2222  
+I'm an animal func3 -22222  
+I'm a fish func3 -2222  
+`************ `  
+I'm an animal -1  
+I'm an animal func1 -I'm an animal  
+I'm virtual animal func2 -1
