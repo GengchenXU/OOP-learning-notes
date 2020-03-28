@@ -1,3 +1,9 @@
+<!--
+ * @Description: 
+ * @Autor: GengchenXu
+ * @Date: 2020-03-28 18:49:57
+ * @LastEditTime: 2020-03-28 22:49:39
+ -->
 对象数组中的元素同样需要用构造函数初始化。具体哪些元素用哪些构造函数初始化，取决于定义数组时的写法。
 
 ```cpp
@@ -49,22 +55,35 @@ Constructor 1 Called
 在构造函数有多个参数时，数组的初始化列表中要显式包含对构造函数的调用。例如下面的程序：
 
 ```cpp
+#include <iostream>
+using namespace std;
 class CTest{
 public:
-    CTest(int n){ }  //构造函数(1)
-    CTest(int n, int m){ }  //构造函数(2)
-    CTest(){ }  //构造函数(3)
+    CTest(int n){cout<<1<<endl; }  //构造函数(1)
+    CTest(int n, int m){cout<<2<<endl; }  //构造函数(2)
+    CTest(){cout<<3<<endl; }  //构造函数(3)
 };
 int main(){
     //三个元素分别用构造函数(1)、(2)、(3) 初始化
     CTest arrayl [3] = { 1, CTest (1, 2) };
     //三个元素分别用构造函数(2)、(2)、(1)初始化
+    cout<<"step1"<<endl;
     CTest array2[3] = { CTest(2,3), CTest (1,2), 1};
     //两个元素指向的对象分别用构造函数(1)、(2)初始化
+    cout<<"step2"<<endl;
     CTest* pArray[3] = { new CTest(4) , new CTest(1,2) };
-
     return 0;
 }
 ```
-
+输出结果：
+>1  
+2  
+3  
+step1  
+2  
+2  
+1  
+step2  
+1  
+2
 上面程序中比较容易令初学者困惑的是第 13 行。pArray 数组是一个[指针](http://c.biancheng.net/c/80/)数组，其元素不是 CTest 类的对象，而是 CTest 类的指针。第 13 行对 pArray[0] 和 pArray[1] 进行了初始化，把它们初始化为指向动态分配的 CTest 对象的指针，而这两个动态分配出来的 CTest 对象又分别是用构造函数（1）和构造函数（2）初始化的。pArray[2] 没有初始化，其值是随机的，不知道指向哪里。第 13 行生成了两个 CTest 对象，而不是三个，所以也只调用了两次 CTest 类的构造函数。
