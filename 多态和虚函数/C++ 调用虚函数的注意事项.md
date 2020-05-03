@@ -5,7 +5,7 @@
 
 类的成员函数之间可以互相调用。在成员函数（静态成员函数、构造函数和析构函数除外）中调用其他虚成员函数的语句是多态的。例如下面的程序：
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 class CBase
@@ -46,7 +46,7 @@ CDerived:func2()
 
 请看下面的程序：
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 class A
@@ -97,7 +97,7 @@ obj 对象消亡时，会引发类 B 析构函数的调用，在类 B 的析构�
 
 例如下面的程序：
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 class A
@@ -131,7 +131,7 @@ int main()
 ```
 
 程序的输出结果如下：  
-C::func2  
+>C::func2  
 A::func1  
 C::func1
 
