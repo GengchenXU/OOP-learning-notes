@@ -10,7 +10,7 @@
 
 下面是一个体现多态规则的例子。
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 class A
@@ -72,7 +72,7 @@ E::Print
 
 下面是一个通过基类引用实现多态的例子。
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 class A
@@ -99,7 +99,7 @@ int main()
 ```
 
 程序的输出结果是：  
-A::Print  
+>A::Print  
 B::Print
 
 第 15 条语句就是通过基类的引用调用基类和派生类中都有的同名、同参数表的虚函数，因而符合多态的规则。

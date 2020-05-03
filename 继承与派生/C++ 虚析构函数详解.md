@@ -1,10 +1,17 @@
+<!--
+ * @Description: 
+ * @Output: 
+ * @Autor: GengchenXu
+ * @Date: 2020-05-02 20:02:21
+ * @LastEditTime: 2020-05-03 17:17:42
+ -->
 
 
 我们知道，有时会让一个基类[指针](http://c.biancheng.net/c/80/)指向用 new 运算符动态生成的派生类对象；同时，用 new 运算符动态生成的对象都是通过 delete 指向它的指针来释放的。如果一个基类指针指向用 new 运算符动态生成的派生类对象，而释放该对象时是通过释放该基类指针来完成的，就可能导致程序不正确。
 
 例如下面的程序：
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 class CShape  //基类
@@ -41,7 +48,7 @@ CShape::destrutor
 
 改写上面程序中的 CShape 类，在析构函数前加 virtual 关键字，将其声明为虚函数：
 
-```
+```cpp
 class CShape{
 public:
     virtual ~CShape() { cout << "CShape::destrutor" << endl; }
