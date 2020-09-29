@@ -65,6 +65,7 @@
  reverse(pos1, pos2); // 将 vector 中的 pos1~pos2 的元素逆序存储
 
 ### **二分查找**
+```cpp
 
 #include<iostream>
 
@@ -149,6 +150,7 @@ int  main()
     return 0;
 
 }
+```
 
 ** 二、deque**
 ------------
@@ -296,6 +298,7 @@ set<T> s;
 set<T, op(比较结构体)> s;     //op 为排序规则，默认规则是 less<T>(升序排列)，或者是 greater<T>(降序规则)。
 
 函数对象：
+```
 
 class Sum
 
@@ -306,6 +309,7 @@ public:
     int operator()(int a, int b){return a+b;}
 
 };
+```
 
 Sum sum;  // 利用了 () 运算符的重载
 
@@ -373,15 +377,17 @@ pair<int, float> p1;   // 调用构造函数来创建 pair 对象
 make_pair(1,1.2);      // 调用 make_pair() 函数来创建 pair 对象
 
 **pair 对象的使用：**
+```
 
 pair<int, float> p1(1, 1.2);
 
 cout<< p1.first << endl;
 
 cout<< p1.second << endl;
+```
 
 ### **顺序遍历：**
-
+```
 set<int> a;
 
 set<int>::iterator it=a.begin();
@@ -389,9 +395,10 @@ set<int>::iterator it=a.begin();
 for(;it!=a.end();it++)
 
     cout<<*it<<endl;
+```
 
 ### **反序遍历：**
-
+```
 set<int> a;
 
 set<int>::reverse_iterator rit=a.rbegin();
@@ -399,7 +406,7 @@ set<int>::reverse_iterator rit=a.rbegin();
 for(;rit!=a.rend();rit++)
 
 cout<<*rit<<endl;
-
+```
 ### **find(key_value);// 如果找到查找的键值，则返回该键值的迭代器位置，否则返回集合最后一个元素后一个位置的迭代器，即 end();**
 
 如：int b[]={1,2,3,4,5};     set<int> a(b,b+5);
@@ -437,7 +444,7 @@ cout<<*rit<<endl;
 **（1）自定义比较结构体；**
 
 首先，定义比较结构体
-
+```
 struct myComp
 
 {
@@ -453,7 +460,7 @@ struct myComp
           }
 
 };
-
+```
 然后，定义 set：
 
 set <类型，myComp> s；
@@ -463,7 +470,7 @@ set <类型，myComp> s；
 **（2）重载 “<” 操作符**
 
 首先，在结构体中，重载 “<” 操作符，自定义排序规则
-
+```
 struct 结构体
 
 {
@@ -479,7 +486,7 @@ struct 结构体
          }
 
 };
-
+```
 然后，定义 set
 
 set <类型> s；
