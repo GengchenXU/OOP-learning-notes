@@ -1,5 +1,3 @@
-\> 本文由 \[简悦 SimpRead\](http://ksria.com/simpread/) 转码， 原文地址 \[blog.csdn.net\](https://blog.csdn.net/weixin\_36888577/article/details/79937886)
-
 既然是队列那么先要包含头文件`#include <queue>`, 他和`queue`不同的就在于我们可以自定义其中数据的优先级, 让优先级高的排在队列前面, 优先出队
 
 优先队列具有队列的所有特性，包括基本操作，只是在这基础上添加了内部的一个排序，它本质是一个堆实现的
@@ -18,7 +16,7 @@
 _Type_ 就是数据类型，_Container_ 就是容器类型（Container 必须是用数组实现的容器，比如 vector,deque 等等，但不能用 list。STL 里面默认用的是 vector），_Functional_ 就是比较的方式，当需要用自定义的数据类型时才需要传入这三个参数，使用基本数据类型时，只需要传入数据类型，默认是大顶堆  
 一般是：
 
-```
+```c
 //升序队列
 priority_queue <int,vector<int>,greater<int> > q;
 //降序队列
@@ -31,7 +29,7 @@ priority_queue <int,vector<int>,less<int> >q;
 
 1.  基本类型例子：
 
-```
+```c
 #include<iostream>
 #include <queue>
 using namespace std;
@@ -87,7 +85,7 @@ cbd abcd abc
 
 2.pari 的比较，先比较第一个元素，第一个相等比较第二个
 
-```
+```c
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -119,7 +117,7 @@ int main()
 
 3\. 对于自定义类型
 
-```
+```c
 #include <iostream>
 #include <queue>
 using namespace std;
