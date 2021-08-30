@@ -66,89 +66,47 @@
 
 ### **二分查找**
 ```cpp
-
 #include<iostream>
-
 #include<algorithm>
-
 #include<vector>
-
 #include<deque>
-
 #include<map>
-
 #include<cstring>
-
 using namespace std;
-
 int  main()
-
 {
-
     vector<int> v(10);
-
     int num;
-
     vector<int>::iterator beg = v.begin();
-
     vector<int>::iterator end = v.end();
-
     vector<int>::iterator mid = v.begin() + (end - beg) / 2;
-
     for (int i = 0; i < 10; i++)
-
     {
-
          v[i] = i;
-
     }
-
     cin >> num;
-
     sort(v.begin(), v.end());
-
     while (*mid != num &&  beg <= end)
-
     {
-
          if (num < *mid)
-
          {
-
              end = mid;
-
          }
-
          else
-
          {
-
              beg = mid + 1;
-
          }
-
          mid = beg + (end - beg) / 2;
-
     }
-
     if (*mid == num)
-
     {
-
          cout << "Find" << endl;
-
     }
-
     else
-
     {
-
          cout << "Not Find" << endl;
-
     }
-
     return 0;
-
 }
 ```
 
@@ -298,16 +256,11 @@ set<T> s;
 set<T, op(比较结构体)> s;     //op 为排序规则，默认规则是 less<T>(升序排列)，或者是 greater<T>(降序规则)。
 
 函数对象：
-```
-
+```cpp
 class Sum
-
 {
-
 public:
-
     int operator()(int a, int b){return a+b;}
-
 };
 ```
 
@@ -377,7 +330,7 @@ pair<int, float> p1;   // 调用构造函数来创建 pair 对象
 make_pair(1,1.2);      // 调用 make_pair() 函数来创建 pair 对象
 
 **pair 对象的使用：**
-```
+```c
 
 pair<int, float> p1(1, 1.2);
 
@@ -387,7 +340,7 @@ cout<< p1.second << endl;
 ```
 
 ### **顺序遍历：**
-```
+```c
 set<int> a;
 
 set<int>::iterator it=a.begin();
@@ -409,7 +362,9 @@ cout<<*rit<<endl;
 ```
 ### **find(key_value);// 如果找到查找的键值，则返回该键值的迭代器位置，否则返回集合最后一个元素后一个位置的迭代器，即 end();**
 
-如：int b[]={1,2,3,4,5};     set<int> a(b,b+5);
+如：
+```c
+int b[]={1,2,3,4,5};     set<int> a(b,b+5);
 
         set<int>::iterator it;
 
@@ -424,6 +379,7 @@ cout<<*rit<<endl;
         if(it!=a.end())  cout<<*it<<endl;
 
         else cout<<“该元素不存在”<<endl;
+```
 
 ### **定义比较函数**
 
@@ -444,21 +400,14 @@ cout<<*rit<<endl;
 **（1）自定义比较结构体；**
 
 首先，定义比较结构体
-```
+```c
 struct myComp
-
 {
-
      bool operator() (const 类型 &a, const 类型 &b)// 重载 “()” 操作符
-
           {
-
                  ……
-
                 return  ……;
-
           }
-
 };
 ```
 然后，定义 set：
@@ -470,21 +419,14 @@ set <类型，myComp> s；
 **（2）重载 “<” 操作符**
 
 首先，在结构体中，重载 “<” 操作符，自定义排序规则
-```
+```c
 struct 结构体
-
 {
-
         bool operator <(const 结构体类型 &a)
-
         {
-
                ……
-
                return（…）;
-
          }
-
 };
 ```
 然后，定义 set
